@@ -1,0 +1,35 @@
+ask
+Usar para: Pedir preguntas específicas a los usuarios durante la ejecución.
+Opciones:
+multiple: bool - Indica si el usuario puede seleccionar múltiples opciones.
+options - Lista de opciones a elegir.
+question - La pregunta que se formulará al usuario.
+header - Etiqueta corta (máx. 30 caracteres).
+read
+Usar para: Leer el contenido de un archivo o directorio. Soporta archivos de texto, imágenes y PDFs. Las imágenes y los PDFs se presentan directamente al modelo. Cada línea de texto llevará un prefijo con el número de línea, por ejemplo, <número>: <contenido>. Se proporciona un número de línea cada vez que se presenta un archivo de texto. Para carpetas, las entradas se devuelven una por línea.
+Opciones:
+limit - Máximo número de líneas o entradas de directorio a leer (por defecto, y con un límite superior de 2000).
+offset - Línea o entrada de directorio desde la cual comenzar a leer (números de línea 1-based).
+path - Ruta al archivo o directorio a leer.
+shell
+Usar para: Ejecutar un comando shell y devolver su salida. Los comandos se ejecutan en Windows utilizando PowerShell. Se recomienda evitar comandos de shell cuando sea posible. La salida larga se guarda en un archivo y se devuelve un avance trunco. Se permiten filtros cuando la salidad es larga. Los comandos pueden aceptar un timeout, o se ejecutan en segundo plano sin un timeout. Ejecutar en segundo plano devuelve inmediatamente y te notifica cuando finalice.
+skill
+Usar para: Cargar instrucciones y recursos de una habilidad especializada para la conversación actual. El ID de habilidad debe coincidir con una habilidad disponible o una que se haya explicitamente referido el usuario.
+subagent
+Usar para: Lanzar un agente hijo en una sesión secundaria para trabajar en una tarea específica. Incluye un sessionID que puede usar para retomar la conversación con el agente secundario en una sesión posterior. Las nuevas sesiones secundarias comienzan con un contexto fresco, por lo que asegúrate de incluir todos los contextos y instrucciones relevantes cuando no pases un sessionID.
+webfetch
+Usar para: Obtener contenido de una URL HTTP o HTTPS y devolverlo como texto, markdown o HTML. El formato markdown es el predeterminado.
+Opciones:
+format - El formato de salida. Predeterminado es markdown. Opciones: text, markdown, html.
+timeout - Tiempo de espera opcional en segundos (máximo: 120).
+websearch
+Usar para: Realizar búsquedas en la web utilizando la integración seleccionada por el usuario. Útil para información más actualizada que sobrepasa la fecha de corte actual.
+Opciones:
+query - El término de búsqueda.
+write
+Usar para: Escribir un archivo al sistema de archivos local, sobrescribiendo si ya existe.
+Opciones:
+content - Contenido a escribir en el archivo.
+path - Ruta al archivo a escribir.
+execute
+Usar para: Ejecutar JavaScript en un entorno restringido de Código para scriptear llamadas de herramientas y solicitudes HTTP y componer sus resultados. fetch está disponible para solicitudes HTTP. Los imports, el acceso al disco y los temporizadores son inhabilitados. Se accede a las llamadas de herramienta a través de tools utilizando solo exactos el nombre del paquete y la firma desde la lista de la ejecución en el catálogo de Código. Preserva la notación de corchetes en las llamadas.
